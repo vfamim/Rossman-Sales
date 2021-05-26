@@ -1,4 +1,4 @@
-# Rossman Sales: Forecasting sales using Machine Learning
+# Rossman Sales: Forecasting Sales
 
 ## Rossman Overview
 
@@ -10,9 +10,9 @@ This project aim to predict sales using data from Rossman, using Data Science li
 
 For this project, we will use  **CRoss Industry Standard Process for Data Mining (CRISP-DM)** method, a process model with six phases that naturally describes the data science life cycle. It’s like a set of guardrails to help you plan, organize, and implement your data science (or machine learning) project.
 
-Business understanding – *What does the business need?*
-Data understanding – *What data do we have / need? Is it clean?*
-Data preparation – *How do we organize the data for modeling?*
-Modeling – *What modeling techniques should we apply?*
-Evaluation – *Which model best meets the business objectives?*
-Deployment – *How do stakeholders access the results?*
+- Business understanding – *What does the business need?*
+- Data understanding – *What data do we have / need? Is it clean?*
+- Data preparation – *How do we organize the data for modeling?*
+- Modeling – *What modeling techniques should we apply?*
+- Evaluation – *Which model best meets the business objectives?*
+- Deployment – *How do stakeholders access the results?*
