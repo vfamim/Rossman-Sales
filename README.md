@@ -167,3 +167,48 @@ List of Leptokurtic features:
 List of Platykurtic:
 
 ```['store', 'day_of_week', 'sales', 'open', 'promo', 'school_holiday', 'competition_open_since_month', 'promo2', 'promo2_since_week', 'promo2_since_year', 'is_promo']```
+
+There isn't mesokurtic kurtosis on present dataset.
+
+**Categorical Attributes**
+
+![boxplot](img/img01.png)
+
+Sales tends to differ in state holidays, store types and assortment.
+
+## 3.0. Hypothesis Creation
+
+To understand the relationship between sales and other features, we raised some hypothesis based on the business problem. The point here is to guide feature engineering and exploratory data analysis.
+
+|List|Hypothesis|
+|----|----------|
+|01.| Stores with a larger assortment should sell more.|
+|02.| Stores with closer competitors should sell less.|
+|03.| Stores with longer competitors should sell more|
+|04.| Stores with active promotions for longer should sell more.|
+|05.| Stores with more promotion days should sell more.|
+|06.| Stores with more consecutive promotions should sell more.|
+|07.| Stores open during the Christmas holiday should sell more.|
+|08.| Stores should be selling more over the years.|
+|09.| Stores should sell more in the second half of the year.|
+|10.| Stores should sell more after the 10th of each month.|
+|11.| Stores should sell less on weekends.|
+|12.| Stores should sell less during school holidays.|
+
+### 3.1. Feature Engineering
+
+**Creating feature based on time**
+From `date` column and using Pandas function, we created column: `year`, `month`, `day`, `week_of_year` and `year_week`.
+
+**Features based on competition and promo**
+* `competition_since`: It stands for how long the competition exists.
+* `promo_since`: It stands for how long is there an active promotion.
+
+**Features based on Assortment and Holidays**
+Transforming categorical features in more understand information, like `assortment` "a" in 'basic' and "b" in "extended".
+
+### 3.2. Filtering Variables
+
+Since closed stores has no sales, we dropped that rows, just like `sales` with sales equal zero.
+
+For columns we dropped `customers` because we won't have this data available for the next six weeks and `promo_interval` and `month_map` we derive to create new features.
