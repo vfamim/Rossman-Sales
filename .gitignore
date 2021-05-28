@@ -134,4 +134,3 @@ data/store.csv
 data/test.csv
 data/train.csv
 .vscode/settings.json
-.gitignore
