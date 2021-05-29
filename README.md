@@ -212,3 +212,13 @@ Transforming categorical features in more understand information, like `assortme
 Since closed stores has no sales, we dropped that rows, just like `sales` with sales equal zero.
 
 For columns we dropped `customers` because we won't have this data available for the next six weeks and `promo_interval` and `month_map` we derive to create new features.
+
+## 4.0. Exploratory Data Analysis (EDA)
+
+The three main goals of EDA is:
+
+1. Gain business experience;
+2. Vaidate business hypothesis (insights);
+3. Realize variables relevants to the model.
+
+### 4.1. Univariate Analysis
