@@ -6,7 +6,7 @@ Rossmann operates over 3,000 drug stores in 7 European countries. Currently, Ros
 
 This project aim to predict sales using data from Rossman, using Data Science lifecycle process like:
 
-## The CRISP-DM Cicle for Data Science
+## The CRISP-DM Cycle for Data Science
 
 For this project, we will use  **CRoss Industry Standard Process for Data Mining (CRISP-DM)** methodology, a process model with six phases that naturally describes the data science life cycle. It’s like a set of guardrails to help you plan, organize, and implement your data science (or machine learning) project.
 
@@ -21,7 +21,7 @@ For this project, we will use  **CRoss Industry Standard Process for Data Mining
 
 
 
-## 1.0. Business Understandig
+## 1.0. Business Understanding
 
 > Note: Since we don't have professional ties with Rossman and only have the sales dataset from Kaggle, we don't have any means to acquire the company's data. Therefore, we will validate some hypothetical business situation.
 
@@ -42,7 +42,7 @@ Starting this project with the most important step, understand what to be done. 
 
 ### 2.1. Data Collection
 
-Data provided by kaggle: [Rossman Store Sales](https://www.kaggle.com/c/rossmann-store-sales/data)
+Data provided by Kaggle: [Rossman Store Sales](https://www.kaggle.com/c/rossmann-store-sales/data)
 
 Files: 
 - train.csv - historical data including Sales
@@ -129,7 +129,7 @@ dtype: object
 
 **About skew:**
 
-Skewness reffer to a distortion (or a measure of the asymmetry) of a probability distribution of a random variable about its mean. If the curve is shifted to the left or to the right, it is said to be skewed. Skewness can be quantified as a representation of the extent to which a given distribution varies from a normal distribution (Bell curve).
+Skewness refer to a distortion (or a measure of the asymmetry) of a probability distribution of a random variable about its mean. If the curve is shifted to the left or to the right, it is said to be skewed. Skewness can be quantified as a representation of the extent to which a given distribution varies from a normal distribution (Bell curve).
 In other words, skewness tells you the amount and direction of skew (departure from horizontal symmetry). The skewness value can be positive or negative, or even undefined. If skewness is 0, the data are perfectly symmetrical, although it is quite unlikely for real-world data. As a general rule of thumb:
 
 * If skewness is less than -1 or greater than 1, the distribution is highly skewed.
@@ -218,7 +218,7 @@ For columns we dropped `customers` because we won't have this data available for
 The three main goals of EDA is:
 
 1. Gain business experience;
-2. Vaidate business hypothesis (insights);
-3. Realize variables relevants to the model.
+2. Validate business hypothesis (insights);
+3. Realize variables relevant to the model.
 
 ### 4.1. Univariate Analysis
