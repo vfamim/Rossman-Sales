@@ -136,7 +136,7 @@ In other words, skewness tells you the amount and direction of skew (departure f
 * If skewness is between -1 and -0.5 or between 0.5 and 1, the distribution is moderately skewed.
 * If skewness is between -0.5 and 0.5, the distribution is approximately symmetric.
 
-List of symetrical skew in rossman' data:
+List of symmetrical skew in Rossman' data:
 
 ```['store', 'day_of_week', 'promo', 'competition_open_since_month', 'promo2', 'promo2_since_week']```
 
