@@ -6,7 +6,7 @@ Rossmann operates over 3,000 drug stores in 7 European countries. Currently, Ros
 
 This project aim to predict sales using data from Rossman, using Data Science lifecycle process like:
 
-## The CRISP-DM Cycle for Data Science
+### The CRISP-DM Cycle for Data Science
 
 For this project, we will use  **CRoss Industry Standard Process for Data Mining (CRISP-DM)** methodology, a process model with six phases that naturally describes the data science life cycle. It’s like a set of guardrails to help you plan, organize, and implement your data science (or machine learning) project.
 
@@ -18,7 +18,6 @@ For this project, we will use  **CRoss Industry Standard Process for Data Mining
 - Deployment – *How do stakeholders access the results?*
 
 # Table of Content
-
 
 
 ## 1.0. Business Understanding
@@ -222,3 +221,113 @@ The three main goals of EDA is:
 3. Realize variables relevant to the model.
 
 ### 4.1. Univariate Analysis
+
+Probability density function is a function whose value at any given sample (or point) in the sample space can be interpreted as providing a relative likelihood that the value of the random variable would equal the sample.
+
+* **Target variable (sales):** the distribution look like positive skew. Probably we will need to rescale our data before training section.
+  
+![img02](img/img02.png)
+
+* **Numerical variables (histograms):**
+
+![img03](img/img03.png)
+
+Some observations:
+* `customers` - higher sales when the customer range is between 0 and 2000.
+* `competition distance` - grand part of competitors are very close.
+* `competition_open_since_month` - most of competitors are concentrated at beginning and end of the year, November has the highest concentration. 
+* `competition_open_since_year` - between 2010 and 2015 had the biggest increase in competitors.
+* `is_promo` - there is more sales when don't have promotion.
+
+* **Categorical variables (barplots):**
+
+![img04](img/img04.png)
+
+
+### 4.2. Bivariate Analysis:
+
+Analyzing how each independent features behaves against sales. In this section we will validate or reject some hypothesis, aiming for some insights.
+
+I will not include all hypothesis in this document, they can be seen on the [notebook](notebook/c01_01_Rossman.ipynb).
+
+#### H2. Stores with closer competitors should sell less.
+*FALSE: Stores nears competitors sell more than stores with competitors located far away.*
+
+![img05](img/img05.png)
+
+#### H4. Stores with active promotions for longer should sell more.
+*False: Stores with active promotion for longer sell less, after a period of time.*
+
+![img06](img/img06.png)
+
+#### H6. Store with more consecutive promotions should sell more.
+*False: Stores with more consecutive promotions sell less.*
+
+|promo|promo2|sales|
+|-----|------|-----|
+|1|0|1628930532|
+|0|0|1482612096|
+|1|1|1472275754|
+|0|1|1289362241|
+
+![img07](img/img07.png)
+
+#### H10. Stores should sell more after the 10th of each month.
+*True: Store sell more after the 10th of each month*
+
+![img08](img/img08.png)
+
+#### H12. Stores should sell less during school holidays.
+*True: Stores sell less during school holidays.*
+
+![img09](img/img09.png)
+
+#### List Hypothesis
+
+| Nº   | Hypothesis                                                 | Conclusion    |
+| ---- | ---------------------------------------------------------- | ------------- |
+| H1   | Stores with a larger assortment should sell more.          | False         |
+| H2   | Stores with closer competitors should sell less.           | False         |
+| H3   | Stores with longer competitors should sell more.           | False         |
+| H4   | Stores with active promotions for longer should sell more. | False         |
+| H5   | Stores with more promotion days should sell more.          | No conclusion |
+| H6   | Stores with more consecutive promotions should sell more.  | False         |
+| H7   | Stores open during the Christmas holiday should sell more. | False         |
+| H8   | Stores should be selling more over the years.              | False         |
+| H9   | Stores should sell more in the second half of the year.    | False         |
+| H10  | Stores should sell more after the 10th of each month.      | True          |
+| H11  | Stores should sell less on weekends.                       | True          |
+| H12  | Stores should sell less during school holidays.            | True          |
+
+### 4.3. Multivariate Analysis
+
+#### Numerical Attributes
+
+![img10](img/img10.png)
+
+#### Categorical Attributes
+
+![img11](img/img11.png)
+
+Later we will make a feature selection using importance selection algorithms, one of the data scientist's jobs is to be skeptical and to believe in some of their decisions. Some of the insights generated will be important to materialize feature selection.
+
+## 5.0. Data Transformation
+
+Some variables presents distinct range, others are classify as categorical, numerical. Most Machine Learning requires data to be formatted in a very specific way, so dataset require some amount of preparation. Good data preparation produces clean and well-curated data which leads to more practical.
+
+### 5.1. Encoding Transformation
+
+* `state holiday` - use one hot encoding from pandas package `get_dummies`, convert categorical variable into dummy/indicator variables.
+* `store_type` -  label encoding was used from Sklearn package `LabelEncoder`. Encode target labels with value between 0 and 1.
+* `assortment` - ordinal encoding using `map` function from pandas package.
+* `sales` - the target variable received a logarithmic transformation.
+
+### 5.2. Rescaling
+
+* MinMaxScaler: This technique subtracts each variable value to the variable mean, and then divides by the variable's range: `year` and `promo_time_week`
+* RobustScaler: Is the alternative when your features has a big quantity of outliers: `competition_distance` and `competition_time_month`.
+
+### 5.3. Cyclic Transformation
+
+Some time-related data has a cyclical nature, the idea here is thinking of the trigonometry circle in terms of time, when the time start running the circle, at some point you will go back to the same place you have started.
+Using sin and cosine transformation on the following variables: 'day_of_week`, `month`, `day` and `week_of_year`.
