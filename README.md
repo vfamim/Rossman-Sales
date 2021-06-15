@@ -1,12 +1,12 @@
-# ROSSMAN SALES: FORECASTING SALES
+<h1> ROSSMAN SALES: FORECASTING SALES </h1>
 
-## Rossman Overview
+<h2> Rossman Overview </h2>
 
 Rossmann operates over 3,000 drug stores in 7 European countries. Currently, Rossmann store managers are tasked with predicting their daily sales for up to six weeks in advance. Store sales are influenced by many factors, including promotions, competition, school and state holidays, seasonality, and locality. With thousands of individual managers predicting sales based on their unique circumstances, the accuracy of results can be quite varied.
 
 This project aim to predict sales using data from Rossman, using Data Science lifecycle process like:
 
-### The CRISP-DM Cycle for Data Science
+<h3> The CRISP-DM Cycle for Data Science </h3>
 
 For this project, we will use  **CRoss Industry Standard Process for Data Mining (CRISP-DM)** methodology, a process model with six phases that naturally describes the data science life cycle. It’s like a set of guardrails to help you plan, organize, and implement your data science (or machine learning) project.
 
@@ -17,8 +17,50 @@ For this project, we will use  **CRoss Industry Standard Process for Data Mining
 - Evaluation – *Which model best meets the business objectives?*
 - Deployment – *How do stakeholders access the results?*
 
-# Table of Content
+<h1> Table of Content </h1>
 
+- [1.0. Business Understanding](#10-business-understanding)
+  - [1.1. Solution format](#11-solution-format)
+- [2.0. Data Preparation](#20-data-preparation)
+  - [2.1. Data Collection](#21-data-collection)
+  - [2.2. Data Description](#22-data-description)
+  - [2.3. Knowing Data:](#23-knowing-data)
+  - [2.4. Descriptive Statistical](#24-descriptive-statistical)
+- [3.0. Hypothesis Creation](#30-hypothesis-creation)
+  - [3.1. Feature Engineering](#31-feature-engineering)
+  - [3.2. Filtering Variables](#32-filtering-variables)
+- [4.0. Exploratory Data Analysis (EDA)](#40-exploratory-data-analysis-eda)
+  - [4.1. Univariate Analysis](#41-univariate-analysis)
+  - [4.2. Bivariate Analysis:](#42-bivariate-analysis)
+    - [H2. Stores with closer competitors should sell less.](#h2-stores-with-closer-competitors-should-sell-less)
+    - [H4. Stores with active promotions for longer should sell more.](#h4-stores-with-active-promotions-for-longer-should-sell-more)
+    - [H6. Store with more consecutive promotions should sell more.](#h6-store-with-more-consecutive-promotions-should-sell-more)
+    - [H10. Stores should sell more after the 10th of each month.](#h10-stores-should-sell-more-after-the-10th-of-each-month)
+    - [H12. Stores should sell less during school holidays.](#h12-stores-should-sell-less-during-school-holidays)
+    - [List Hypothesis](#list-hypothesis)
+  - [4.3. Multivariate Analysis](#43-multivariate-analysis)
+    - [Numerical Attributes](#numerical-attributes)
+    - [Categorical Attributes](#categorical-attributes)
+- [5.0. Data Preparation](#50-data-preparation)
+  - [5.1. Encoding Transformation](#51-encoding-transformation)
+  - [5.2. Rescaling](#52-rescaling)
+  - [5.3. Cyclic Transformation / Nature Transformation](#53-cyclic-transformation--nature-transformation)
+- [6.0. Feature Selection](#60-feature-selection)
+- [7.0. Machine Learning Modelling](#70-machine-learning-modelling)
+- [8.0. Hyperparameter Fine Tuning](#80-hyperparameter-fine-tuning)
+  - [8.1. Single Performance - Final](#81-single-performance---final)
+  - [8.2. Real Performance - Final](#82-real-performance---final)
+- [9.0. Evaluation](#90-evaluation)
+  - [9.1. Business Performance](#91-business-performance)
+  - [9.2. Machine Learning Performance](#92-machine-learning-performance)
+- [10.0. Deployment](#100-deployment)
+  - [10.1. Rossmann Bot in Telegram](#101-rossmann-bot-in-telegram)
+  - [10.2. Telegram Bot Architecture](#102-telegram-bot-architecture)
+  - [10.3. Predicting with Telegram Bot](#103-predicting-with-telegram-bot)
+- [11.0. Conclusion](#110-conclusion)
+  - [11.1. Next Steps](#111-next-steps)
+
+---
 
 ## 1.0. Business Understanding
 
@@ -36,6 +78,8 @@ Starting this project with the most important step, understand what to be done. 
 - **Kind of problem:** Sales Forecast;
 - **Main methods:** Regression, Time Series;
 - **Delivering Method:** Real-time six weeks sales forecasting in a smartphone app.
+
+---
 
 ## 2.0. Data Preparation
 
@@ -175,6 +219,8 @@ There isn't mesokurtic kurtosis on present dataset.
 
 Sales tends to differ in state holidays, store types and assortment.
 
+---
+
 ## 3.0. Hypothesis Creation
 
 To understand the relationship between sales and other features, we raised some hypothesis based on the business problem. The point here is to guide feature engineering and exploratory data analysis.
@@ -211,6 +257,8 @@ Transforming categorical features in more understand information, like `assortme
 Since closed stores has no sales, we dropped that rows, just like `sales` with sales equal zero.
 
 For columns we dropped `customers` because we won't have this data available for the next six weeks and `promo_interval` and `month_map` we derive to create new features.
+
+---
 
 ## 4.0. Exploratory Data Analysis (EDA)
 
@@ -299,6 +347,8 @@ I will not include all hypothesis in this document, they can be seen on the [not
 | H11  | Stores should sell less on weekends.                       | True          |
 | H12  | Stores should sell less during school holidays.            | True          |
 
+> Note: For H5 we decided to answer in second cycle of CRISP-DM
+
 ### 4.3. Multivariate Analysis
 
 #### Numerical Attributes
@@ -311,7 +361,9 @@ I will not include all hypothesis in this document, they can be seen on the [not
 
 Later we will make a feature selection using importance selection algorithms, one of the data scientist's jobs is to be skeptical and to believe in some of their decisions. Some of the insights generated will be important to materialize feature selection.
 
-## 5.0. Data Transformation
+---
+
+## 5.0. Data Preparation
 
 Some variables presents distinct range, others are classify as categorical, numerical. Most Machine Learning requires data to be formatted in a very specific way, so dataset require some amount of preparation. Good data preparation produces clean and well-curated data which leads to more practical.
 
@@ -327,7 +379,173 @@ Some variables presents distinct range, others are classify as categorical, nume
 * MinMaxScaler: This technique subtracts each variable value to the variable mean, and then divides by the variable's range: `year` and `promo_time_week`
 * RobustScaler: Is the alternative when your features has a big quantity of outliers: `competition_distance` and `competition_time_month`.
 
-### 5.3. Cyclic Transformation
+### 5.3. Cyclic Transformation / Nature Transformation
 
 Some time-related data has a cyclical nature, the idea here is thinking of the trigonometry circle in terms of time, when the time start running the circle, at some point you will go back to the same place you have started.
 Using sin and cosine transformation on the following variables: 'day_of_week`, `month`, `day` and `week_of_year`.
+
+---
+
+## 6.0. Feature Selection
+Feature selection is the process of reducing the number of input variables and computational cost. We are implementing the BorutaPy package, the implementation tries to mimic the scikit-learn interface, so use `fit`, `transform` or `fit_transform` to run the feature selection.
+
+Boruta is an all relevant feature selection method, while most other are minimal optimal; this means it tries to find all features carrying information usable for prediction, rather than finding a possibly compact subset of features on which some classifier has a minimal error.
+
+More information about Boruta: [here](https://notabug.org/mbq/Boruta/wiki/FAQ).
+
+ ```
+ cols_selected_boruta = [
+    'store',
+    'promo',
+    'store_type',
+    'assortment',
+    'competition_distance',
+    'competition_open_since_month',
+    'competition_open_since_year',
+    'promo2',
+    'promo2_since_week',
+    'promo2_since_year',
+    'competition_time_month',
+    'promo_time_week',
+    'day_of_week_sin',
+    'day_of_week_cos',
+    'month_sin',
+    'month_cos',
+    'day_sin',
+    'day_cos',
+    'week_of_year_sin',
+    'week_of_year_cos'] 
+```
+
+---
+
+## 7.0. Machine Learning Modelling
+
+This step aim to choose the best Machine Learning model. We performed 5 models:
+
+<ol>
+<li> Average Model (baseline);</li>
+<li> Linear Regression Model; </li>
+<li> Linear regression Regularized Model - Lasso; </li>
+<li> Decision Tree Regressor; </li>
+<li> XGBoost Regressor. </li>
+</ol>
+
+The **Average Model** is a simple model to serve as a baseline to compare if the others are better than the mean. **Regression** is a technique that fits the best line that minimizes the error in order to predict a dependent continuous variable. **Ensemble** model like Decision Tree Regressor is a flowchart-like structure in which each internal node represents a "test" on an attribute, each branch represents the outcome of the test. **XGBoost** it is based on decision tree, but uses gradient boosting algorithms.
+
+After fit the models, here our results:
+
+|      |                model name |         MAE |     MAPE |        RMSE |
+| ---: | ------------------------: | ----------: | -------: | ----------: |
+|    0 |             Average Model | 1354.800353 | 0.206400 | 1835.135542 |
+|    1 |         Linear Regression | 1867.089774 | 0.292694 | 2671.049215 |
+|    2 | Linear Regression - Lasso | 1891.704881 | 0.289106 | 2744.451737 |
+|    3 |   Decision Tree Regressor |  970.590975 | 0.145819 | 1479.479613 |
+|    4 |         XGBoost Regressor |  718.803066 | 0.105418 | 1041.185015 |
+
+To validate our models, the re-sample procedure named Cross-validation across time period. The procedure has a single parameter called "k" that refers to the number of groups that a given data sample is to be split into.
+
+The results is shown above:
+
+
+|  |Model|MAE CV|MAE_STD CV|MAPE CV|MAPE_STD CV|RMSE CV|RMSE_STD CV|
+|--|-----|--------|-----------|--------|-----------|-------|-----------|    
+|0|	Linear Regression CV|2081.73|295.63|0.30|0.02|2952.52|468.37|
+|1|	Lasso CV|2116.38|341.50|0.29|0.01|3057.75|504.26|
+|2|	Decision Tree Regressor CV|	1129.32|286.39|0.16|0.03|1719.94|471.82|
+|3|	XGBoost Regressor CV|933.60|168.39|0.13|0.02|1340.71|230.12|
+
+XGBoost is the best model.
+
+---
+
+## 8.0. Hyperparameter Fine Tuning
+
+In this task our goal is to find the best parameters that maximize the learning in our model. The best parameters are found by testing a set of parameters iteratively. In this project we will use Random Search, this method randomly chooses parameters from a given list of candidates. It is the fastest method available:
+
+**Best Params**:
+``` 
+{'n_estimators': 1700, 'eta': 0.03, 'max_depth': 9, 'subsample': 0.7, 'min_child_weight': 15}
+```
+
+### 8.1. Single Performance - Final
+
+|      |                model name |         MAE |     MAPE |        RMSE |
+| ---: | ------------------------: | ----------: | -------: | ----------: |
+|    0 |             Average Model | 1354.800353 | 0.206400 | 1835.135542 |
+|    1 |         Linear Regression | 1867.089774 | 0.292694 | 2671.049215 |
+|    2 | Linear Regression - Lasso | 1891.704881 | 0.289106 | 2744.451737 |
+|    3 |   Decision Tree Regressor |  970.590975 | 0.145819 | 1479.479613 |
+|    4 |         XGBoost Regressor |  718.803066 | 0.105418 | 1041.185015 |
+|    5 |       XGBoost Regressor + |  637.498339 | 0.092580 |  933.606168 |
+
+
+### 8.2. Real Performance - Final
+
+|  |Model|MAE CV|MAE_STD CV|MAPE CV|MAPE_STD CV|RMSE CV|RMSE_STD CV|
+|--|-----|--------|-----------|--------|-----------|-------|-----------|    
+|0|	Linear Regression CV|2081.73|295.63|0.30|0.02|2952.52|468.37|
+|1|	Lasso CV|2116.38|341.50|0.29|0.01|3057.75|504.26|
+|2|	Decision Tree Regressor CV|	1129.32|286.39|0.16|0.03|1719.94|471.82|
+|3|	XGBoost Regressor CV|933.60|168.39|0.13|0.02|1340.71|230.12|
+|4|	XGBoost Regressor CV +|821.21|121.75|0.12|0.01|1183.23|186.45|
+
+MAPE improved by 1%.
+
+---
+
+## 9.0. Evaluation
+
+### 9.1. Business Performance
+For each store is measured by the average of all predicted sales for the next six weeks. We get the Best Scenario sum up the prediction with the Mean Absolute Error (MAE) and Worst Scenarios subtracting prediction with the MAE. A sample of our model performance below:
+
+| store | predictions | worst_scenario | best_scenario |           MAE |        MAPE |          |
+| ----: | ----------: | -------------: | ------------: | ------------: | ----------: | -------- |
+|   291 |         292 |  104950.578125 | 101594.947767 | 108306.208483 | 3355.630358 | 0.564530 |
+|   908 |         909 |  227714.828125 | 220002.991381 | 235426.664869 | 7711.836744 | 0.512362 |
+|   285 |         286 |  186474.453125 | 185122.359896 | 187826.546354 | 1352.093229 | 0.464166 |
+|   102 |         103 |  238260.875000 | 236520.554160 | 240001.195840 | 1740.320840 | 0.374698 |
+|   169 |         170 |  204650.843750 | 203226.550695 | 206075.136805 | 1424.293055 | 0.356822 |
+
+### 9.2. Machine Learning Performance
+
+![image12](img/img12.png)
+
+**The first square** it is possible to seem a line plot with predictions (in red) were fairly on par with true values (blue).
+
+**The second square** show the error rate between prediction and observed values across six weeks. Ideally, errors should be close to the dashed line, since it represents an error rate of 1, when predicted values are equal to observed one. The error rate range are short, so our model looks good.
+
+**The third square** is a premises for a good machine learning model: to have a normal-shaped distribution of residuals with mean zero. We can observe that the errors are centered around zero, it is a bell-shaped curve.
+
+**The fourth square** is a scatterplot that help us analyze the residuals, expected a "tube" shape, since it is represents low error variance across all values that sales prediction can assume.
+
+---
+
+## 10.0. Deployment
+
+In this section, we will deploy our model, at this stage the results have to be delivered or presented for stakeholders.
+
+### 10.1. Rossmann Bot in Telegram
+
+Using the [BotFather](https://telegram.me/BotFather) to create our bot. Check the documentation to more details: [Documentation](https://core.telegram.org/bots#3-how-do-i-create-a-bot)
+
+### 10.2. Telegram Bot Architecture
+
+The user sends a message to the bot with store id and sends it to the Rossmann API ([rossmann-bot.py](rossmann-telegram-api/rossmann-bot.py)) receive the request and parses the message to extract the `store_id`, then it calls a method from the [Handler API](webapp/handler.py) sending the data. The Handler API makes all the process on data to shape the raw data and generate predictions, then it returns the prediction to the Rossmann API. The Rossmann API returns the sales prediction to the user on Telegram.
+
+### 10.3. Predicting with Telegram Bot
+
+(IMAGE.GIF)
+
+---
+## 11.0. Conclusion
+
+In this project it was possible to carry out all the steps of a complete Data Science project, using a CRISP-DM project management methodology cycle we performed a satisfactory model by using XGBoost regressor algorithm. We deepen the knowledge Rossmann's sales using exploratory data analysis and ending with a telegram bot that shows sales predictions.
+It takes much more than tools to be a Data Scientist, understanding the problem and search for solution are the main aspects to guide your projects and develop a suitable solution.
+This project was mentored by Meigarom Lopes who guided [Data Science em Produção](https://sejaumdatascientist.com/como-ser-um-data-scientist/) course. 
+
+### 11.1. Next Steps
+
+* Experimenting other Machine Learning algorithms.
+* Creating new features to see how much the performance is impacted.
+* Improve telegram bot with new 
