@@ -273,7 +273,7 @@ The three main goals of EDA is:
 Probability density function is a function whose value at any given sample (or point) in the sample space can be interpreted as providing a relative likelihood that the value of the random variable would equal the sample.
 
 * **Target variable (sales):** the distribution look like positive skew. Probably we will need to rescale our data before training section.
-  
+
 ![img02](img/img02.png)
 
 * **Numerical variables (histograms):**
@@ -415,7 +415,7 @@ More information about Boruta: [here](https://notabug.org/mbq/Boruta/wiki/FAQ).
     'day_cos',
     'week_of_year_sin',
     'week_of_year_cos'] 
-```
+ ```
 
 ---
 
@@ -449,7 +449,7 @@ The results is shown above:
 
 
 |  |Model|MAE CV|MAE_STD CV|MAPE CV|MAPE_STD CV|RMSE CV|RMSE_STD CV|
-|--|-----|--------|-----------|--------|-----------|-------|-----------|    
+|--|-----|--------|-----------|--------|-----------|-------|-----------|
 |0|	Linear Regression CV|2081.73|295.63|0.30|0.02|2952.52|468.37|
 |1|	Lasso CV|2116.38|341.50|0.29|0.01|3057.75|504.26|
 |2|	Decision Tree Regressor CV|	1129.32|286.39|0.16|0.03|1719.94|471.82|
@@ -483,7 +483,7 @@ In this task our goal is to find the best parameters that maximize the learning 
 ### 8.2. Real Performance - Final
 
 |  |Model|MAE CV|MAE_STD CV|MAPE CV|MAPE_STD CV|RMSE CV|RMSE_STD CV|
-|--|-----|--------|-----------|--------|-----------|-------|-----------|    
+|--|-----|--------|-----------|--------|-----------|-------|-----------|
 |0|	Linear Regression CV|2081.73|295.63|0.30|0.02|2952.52|468.37|
 |1|	Lasso CV|2116.38|341.50|0.29|0.01|3057.75|504.26|
 |2|	Decision Tree Regressor CV|	1129.32|286.39|0.16|0.03|1719.94|471.82|
@@ -517,7 +517,7 @@ For each store is measured by the average of all predicted sales for the next si
 
 **The third square** is a premises for a good machine learning model: to have a normal-shaped distribution of residuals with mean zero. We can observe that the errors are centered around zero, it is a bell-shaped curve.
 
-**The fourth square** is a scatterplot that help us analyze the residuals, expected a "tube" shape, since it is represents low error variance across all values that sales prediction can assume.
+**The fourth square** is a scatter plot that help us analyze the residuals, expected a "tube" shape, since it is represents low error variance across all values that sales prediction can assume.
 
 ---
 
@@ -535,7 +535,11 @@ The user sends a message to the bot with store id and sends it to the Rossmann A
 
 ### 10.3. Predicting with Telegram Bot
 
-(IMAGE.GIF)
+![web_app](img/web_app.jpeg)
+
+
+
+
 
 ---
 ## 11.0. Conclusion
