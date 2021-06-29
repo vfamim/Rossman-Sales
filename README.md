@@ -535,7 +535,7 @@ The user sends a message to the bot with store id and sends it to the Rossmann A
 
 ### 10.3. Predicting with Telegram Bot
 
-![web_app](img/web_app.jpeg)
+<img src="img/web_app.jpeg" alt="web_app" style="zoom:50%;" />
 
 
 
