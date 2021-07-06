@@ -1,6 +1,6 @@
-<h1> ROSSMAN SALES: FORECASTING SALES </h1>
+<h1> ROSSMANN SALES: FORECASTING SALES </h1>
 
-<h2> Rossman Overview </h2>
+<h2> Rossmann Overview </h2>
 
 Rossmann operates over 3,000 drug stores in 7 European countries. Currently, Rossmann store managers are tasked with predicting their daily sales for up to six weeks in advance. Store sales are influenced by many factors, including promotions, competition, school and state holidays, seasonality, and locality. With thousands of individual managers predicting sales based on their unique circumstances, the accuracy of results can be quite varied.
 
@@ -64,7 +64,7 @@ For this project, we will use  **CRoss Industry Standard Process for Data Mining
 
 ## 1.0. Business Understanding
 
-> Note: Since we don't have professional ties with Rossman and only have the sales dataset from Kaggle, we don't have any means to acquire the company's data. Therefore, we will validate some hypothetical business situation.
+> Note: Since we don't have professional ties with Rossmann and only have the sales dataset from Kaggle, we don't have any means to acquire the company's data. Therefore, we will validate some hypothetical business situation.
 
 Starting this project with the most important step, understand what to be done. There are three tasks to be done:
 
@@ -85,7 +85,7 @@ Starting this project with the most important step, understand what to be done. 
 
 ### 2.1. Data Collection
 
-Data provided by Kaggle: [Rossman Store Sales](https://www.kaggle.com/c/rossmann-store-sales/data)
+Data provided by Kaggle: [Rossmann Store Sales](https://www.kaggle.com/c/rossmann-store-sales/data)
 
 Files: 
 - train.csv - historical data including Sales
@@ -179,7 +179,7 @@ In other words, skewness tells you the amount and direction of skew (departure f
 * If skewness is between -1 and -0.5 or between 0.5 and 1, the distribution is moderately skewed.
 * If skewness is between -0.5 and 0.5, the distribution is approximately symmetric.
 
-List of symmetrical skew in Rossman' data:
+List of symmetrical skew in Rossmann' data:
 
 ```['store', 'day_of_week', 'promo', 'competition_open_since_month', 'promo2', 'promo2_since_week']```
 
